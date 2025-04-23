@@ -1,0 +1,23 @@
+name: build-image-when-update-main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run basic terminal commands
+        run: |
+          echo "当前工作目录："
+          pwd
+          echo "目录文件列表："
+          ls -la
+
+      - name: Build Docker
+        run: docker build -t midterm-image .
